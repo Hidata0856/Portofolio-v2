@@ -1,0 +1,131 @@
+{
+    "profile": {
+        "name": "Taufik Hidayat",
+        "bio": "Berikut adalah kontak saya",
+        "image": "https://files.catbox.moe/uotxm4.jpg"
+    },
+    "links": [
+        {
+            "title": "Whatsapp",
+            "url": "https://wa.me/message/6285823614537",
+            "icon": "fab fa-whatsapp"
+        },
+        {
+            "title": "Website",
+            "url": "https://akitohidata.netlify.app",
+            "icon": "fas fa-globe"
+        },
+        {
+            "title": "TikTok",
+            "url": "https://tiktok.com/@akito.hidata",
+            "icon": "fab fa-tiktok"
+        },
+        {
+            "title": "GitHub",
+            "url": "https://github.com/Hidata0856",
+            "icon": "fab fa-github"
+        }
+      ],
+
+    "music": {
+        "title": "没有理由 (No Reason)",
+        "artist": "永彬Ryan.B / 周延英（英子-effie） / DP龙猪",
+        "albumArt": "https://files.catbox.moe/p68b6y.webp",
+        "audioFile": "noreason.mp3",
+        "duration": 218,
+        "timeSync": [
+            
+            { "time": 0.0, "text": "[playing.. noreason]" },
+             { "time": 0.9, "text": "永彬Ryan.B / 周延英（英子-effie） / DP龙猪" },
+            
+            { "time": 1.0, "text": "introo" },
+            
+             { "time": 3.0, "text": "🎶🎶" },
+
+            
+            { "time": 9.0, "text": "沒有人可以去等待\nTidak ada yang bisa menunggu" },
+            { "time": 13.5, "text": "不知不覺的放開你\nTanpa sadar melepaskanmu" },
+            { "time": 16.0, "text": "我們都沒有那勇氣 baby\nKita semua tidak punya keberanian itu, sayang" },
+            { "time": 19.0, "text": "I'm sorry, I'm so lonely\nAku minta maaf, Aku sangat kesepian" },
+            
+            
+            { "time": 22.0, "text": "我們都沒有錯與對\nKita semua tidak salah dan benar" },
+            { "time": 24.5, "text": "找不到任何一個原因\nAku tidak dapat menemukan satu pun alasan" },
+            { "time": 27.0, "text": "沒有理由的離開 baby\nTidak ada alasan untuk pergi, sayang" },
+            { "time": 30.0, "text": "I'm sorry, I'm so lonely\nAku minta maaf, Aku sangat kesepian" },
+            
+            
+            { "time": 33.0, "text": "Yeah, yeah 看見信息不是不想回你\nYa, ya, melihat pesan bukan berarti tidak ingin membalasmu" },
+            { "time": 36.0, "text": "只是我們的對話少了一些甜蜜\nHanya saja percakapan kita kurang sedikit manis" },
+            { "time": 38.5, "text": "看似很正常的語句 但透著距離\nTampaknya seperti pernyataan biasa, namun mengungkapkan jarak" },
+            { "time": 40.5, "text": "我不知道該怎麽對你 也許是正常的關係\nAku tak tahu apa yang harus kulakukan padamu. Mungkin ini normal" },
+            { "time": 43.9, "text": "我每時每刻都告訴自己\nAku selalu mengatakan itu pada diri aku sendiri" },
+            { "time": 46.5, "text": "我還是很愛你的 只是 lonely\nAku masih mencintaimu. Aku hanya kesepian" },
+            
+            { "time": 50.0, "text": "不知道微信什麽時候開始沒有表情\nTidak tahu kapan obrolan WeChat mulai kehilangan emoji" },
+            { "time": 55.0, "text": "你的上班時間多了 沒有那麽多的高興\nKau bekerja lebih lama, kau tidak sebahagia yang seharusnya" },
+            
+            
+            { "time": 58.0, "text": "回想起來 剛開始的時間\nMengingat kembali, waktu awalnya" },
+            { "time": 60.0, "text": "兩個人都在愛 都想辦法離開\nKeduanya saling mencintai, tetapi berusaha mencari cara untuk pergi" },
+            { "time": 62.0, "text": "沒有理由的\nTidak ada alasan untuk pergi" },
+            
+            
+            { "time": 65.0, "text": "沒有人可以去等待\nTidak ada yang bisa menunggu" },
+            { "time": 67.5, "text": "不知不覺的放開你\nTanpa sadar melepaskanmu" },
+            { "time": 72.0, "text": "我們都沒有那勇氣 baby\nKita semua tidak punya keberanian itu, sayang" },
+            { "time": 75.0, "text": "I'm sorry, I'm so lonely\nAku minta maaf, Aku sangat kesepian" },
+            { "time": 78.0, "text": "我們都沒有錯與對\nKita semua tidak salah dan benar" },
+            { "time": 81.0, "text": "找不到任何一個原因\nAku tidak dapat menemukan satu pun alasan" },
+            { "time": 83.0, "text": "沒有理由的離開 baby\nTidak ada alasan untuk pergi, sayang" },
+            { "time": 86.0, "text": "I'm sorry, I'm so lonely\nAku minta maaf, Aku sangat kesepian" },
+            
+            
+            { "time": 88.0, "text": "Yeah 理由 理由 理由 理由\nYa alasan alasan alasan alasan" },
+            { "time": 95.0, "text": "再多理由 無法挽留\nTidak ada alasan untuk tetap tinggal" },
+            { "time": 100.0, "text": "愛情 愛情 愛情 愛情\nCinta cinta cinta cinta" },
+            { "time": 106.0, "text": "再多理由 說停就停\nSemakin banyak alasan untuk berhenti" },
+            
+            
+            { "time": 111.0, "text": "回想起來 剛開始的時間\nMengingat kembali, waktu awalnya" },
+            { "time": 116.0, "text": "兩個人都在愛 都想辦法離開\nKeduanya saling mencintai, tetapi berusaha mencari cara untuk pergi" },
+            { "time": 118.0, "text": "沒有理由的\nTidak ada alasan untuk pergi" },
+            
+        
+            { "time": 121.0, "text": "沒有人可以去等待\nTidak ada yang bisa menunggu" },
+            { "time": 123.0, "text": "不知不覺的放開你\nTanpa sadar melepaskanmu" },
+            { "time": 128.0, "text": "我們都沒有那勇氣 baby\nKita semua tidak punya keberanian itu, sayang" },
+            { "time": 130.5, "text": "I'm sorry, I'm so lonely\nAku minta maaf, Aku sangat kesepian" },
+            { "time": 133.0, "text": "我們都沒有錯與對\nKita semua tidak salah dan benar" },
+            { "time": 136.5, "text": "找不到任何一個原因\nAku tidak dapat menemukan satu pun alasan" },
+            { "time": 139.0, "text": "沒有理由的離開 baby\nTidak ada alasan untuk pergi, sayang" },
+            { "time": 142.0, "text": "I'm sorry, I'm so lonely\nAku minta maaf, Aku sangat kesepian" },
+            
+            { "time": 144.0, "text": "Yeah.. uhuu... ehemmm... " },
+            
+             { "time": 154.0, "text": "I'm so lonely\nAku sangat kesepian" },
+             
+            { "time": 157.0, "text": "Yeah... huu... Ehemm..." },
+            
+            { "time": 167.0, "text": "沒有人可以去等待\nTidak ada yang bisa menunggu" },
+            { "time": 170.5, "text": "不知不覺的放開你\nTanpa sadar melepaskanmu" },
+            { "time": 173.5, "text": "我們都沒有那勇氣 baby\nKita semua tidak punya keberanian itu, sayang" },
+            { "time": 175.5, "text": "I'm sorry, I'm so lonely\nAku minta maaf, Aku sangat kesepian" },
+            
+           { "time": 179.0, "text": "我們都沒有錯與對\nKita semua tidak salah dan benar" },
+            { "time": 181.0, "text": "找不到任何一個原因\nAku tidak dapat menemukan satu pun alasan" },
+            { "time": 184.0, "text": "沒有理由的離開 baby\nTidak ada alasan untuk pergi, sayang" },
+            { "time": 187.0, "text": "I'm sorry, I'm so lonely\nAku minta maaf, Aku sangat kesepian" },
+            
+               { "time": 190.0, "text": "Huu..Huu...huu" },
+            
+               { "time": 198.0, "text": "I'm sorry, I'm so lonely\nAku minta maaf, Aku sangat kesepian" },
+               
+               { "time": 201.0, "text": "Huu..Huu...huu" },
+               
+            { "time": 209.0, "text": "[🎶🎶]" },
+            
+            { "time": 209.0, "text": "[🎶🎶]" }
+        ]
+    }
+}

@@ -1,0 +1,795 @@
+<!DOCTYPE html><html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>my skills</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --accent-color: #ffdb58;
+            --button-color: #ffdb58;
+            --button-text: #000000;
+            --cyan-color: #00FFFF;
+            --yellow-color: #FFFF00;
+            --card-bg: #f5f5f5;
+            --card-shadow: rgba(0,0,0,0.1);
+        }[data-theme="dark"] {
+        --bg-color: #121212;
+        --text-color: #ffffff;
+        --accent-color: #00FFFF;
+        --button-color: #00FFFF;
+        --button-text: #121212;
+        --cyan-color: #00FFFF;
+        --yellow-color: #FFFF00;
+        --card-bg: #1e1e1e;
+        --card-shadow: rgba(0,0,0,0.3);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+        20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+
+    @keyframes shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+        font-family: 'Arial', sans-serif;
+    }
+
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        overflow-x: hidden;
+        position: relative;
+    }
+    
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 50% 50%, transparent 95%, var(--accent-color) 100%);
+        opacity: 0.1;
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        z-index: 100;
+        background-color: var(--bg-color);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .logo span {
+        color: var(--accent-color);
+    }
+
+    .logo-icon {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        animation: pulse 2s infinite;
+    }
+
+    .toggle-theme {
+        background-color: var(--accent-color);
+        color: var(--button-text);
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    /* Skills Section */
+    .skills {
+        min-height: 100vh;
+        padding: 100px 0 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 50px;
+        text-align: center;
+        position: relative;
+        padding-bottom: 15px;
+        animation: fadeIn 1s ease forwards;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 4px;
+        background-color: var(--accent-color);
+        animation: expandWidth 1.5s ease forwards 0.5s;
+    }
+    
+    @keyframes expandWidth {
+        from { width: 0; }
+        to { width: 100px; }
+    }
+
+    .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 40px;
+        width: 100%;
+        perspective: 1000px;
+    }
+
+    .skill-card {
+        background-color: var(--card-bg);
+        border-radius: 15px;
+        padding: 30px;
+        width: 300px;
+        box-shadow: 0 10px 20px var(--card-shadow);
+        text-align: center;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 350px;
+        transform-style: preserve-3d;
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    
+    .skill-card.node {
+        animation: fadeIn 0.6s ease forwards 0.3s;
+    }
+    
+    .skill-card.python {
+        animation: fadeIn 0.6s ease forwards 0.6s;
+    }
+    
+    .skill-card.js {
+        animation: fadeIn 0.6s ease forwards 0.9s;
+    }
+
+    .skill-card:hover {
+        transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+        box-shadow: 0 15px 30px var(--card-shadow);
+    }
+    
+    .skill-card::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        z-index: -1;
+        background: linear-gradient(45deg, var(--cyan-color), var(--yellow-color), var(--accent-color));
+        border-radius: 16px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .skill-card:hover::before {
+        opacity: 0.7;
+        animation: rotate 3s linear infinite;
+    }
+
+    .skill-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .skill-title {
+        font-size: 24px;
+        margin-bottom: 15px;
+        font-weight: bold;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .skill-title::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--accent-color);
+        transition: width 0.4s ease;
+    }
+    
+    .skill-card:hover .skill-title::after {
+        width: 100%;
+    }
+
+    .skill-level {
+        width: 100%;
+        height: 10px;
+        background-color: #ddd;
+        border-radius: 5px;
+        margin: 15px 0;
+        position: relative;
+        overflow: hidden;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+    }
+    
+    .level-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        border-radius: 5px;
+        transition: width 1.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+        background-size: 200% 100%;
+        animation: shimmer 2s infinite linear;
+    }
+
+    .node .level-fill {
+        background: linear-gradient(90deg, #68A063, #8CC84B, #68A063);
+        background-size: 200% 100%;
+        width: 0;
+    }
+
+    .python .level-fill {
+        background: linear-gradient(90deg, #3776AB, #FFD43B, #3776AB);
+        background-size: 200% 100%;
+        width: 0;
+    }
+
+    .js .level-fill {
+        background: linear-gradient(90deg, #F7DF1E, #000000, #F7DF1E);
+        background-size: 200% 100%;
+        width: 0;
+    }
+
+    .skill-progress {
+        font-weight: bold;
+        margin: 5px 0 10px;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+    
+    .skill-card:hover .skill-progress {
+        transform: scale(1.1);
+        text-shadow: 0 0 5px var(--accent-color);
+    }
+
+    .skill-button {
+        background-color: var(--button-color);
+        color: var(--button-text);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 15px;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+    
+    .skill-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        transition: all 0.4s ease;
+        z-index: -1;
+    }
+    
+    .skill-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .skill-button:hover::before {
+        left: 100%;
+    }
+    
+    .skill-button:active {
+        transform: scale(0.95);
+    }
+
+    .skill-description {
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        font-size: 14px;
+        line-height: 1.6;
+        margin-top: 15px;
+        text-align: left;
+        transform: translateY(20px);
+        position: relative;
+    }
+    
+    .skill-description ul {
+        padding-left: 20px;
+        margin-top: 8px;
+    }
+    
+    .skill-description li {
+        margin-bottom: 5px;
+        position: relative;
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: all 0.3s ease;
+    }
+    
+    .skill-description.active li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    .skill-description.active li:nth-child(1) { transition-delay: 0.1s; }
+    .skill-description.active li:nth-child(2) { transition-delay: 0.2s; }
+    .skill-description.active li:nth-child(3) { transition-delay: 0.3s; }
+    .skill-description.active li:nth-child(4) { transition-delay: 0.4s; }
+    .skill-description.active li:nth-child(5) { transition-delay: 0.5s; }
+
+    .skill-description.active {
+        height: auto;
+        opacity: 1;
+        transform: translateY(0);
+        margin-bottom: 15px;
+    }
+
+    .nav-buttons {
+        display: flex;
+        gap: 20px;
+        margin-top: 30px;
+        opacity: 0;
+        animation: fadeIn 0.8s ease forwards 1.2s;
+    }
+
+    .nav-button {
+        background-color: var(--button-color);
+        color: var(--button-text);
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        transition: all 0.4s ease;
+    }
+    
+    .nav-button span {
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+    
+    .nav-button:hover span {
+        animation: shake 0.5s ease;
+    }
+
+    .nav-button::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: rgba(255, 255, 255, 0.2);
+        z-index: -1;
+        transition: height 0.3s ease;
+    }
+
+    .nav-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    }
+    
+    .nav-button:hover::after {
+        height: 100%;
+    }
+    
+    .nav-button:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* Responsive styles */
+    @media screen and (max-width: 768px) {
+        .section-title {
+            font-size: 2rem;
+        }
+        
+        .skills-container {
+            gap: 20px;
+        }
+        
+        .skill-card {
+            width: 280px;
+            padding: 25px;
+            min-height: 320px;
+        }
+        
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .skill-title {
+            font-size: 22px;
+        }
+        
+        .nav-button {
+            font-size: 16px;
+            padding: 10px 20px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        .section-title {
+            font-size: 1.8rem;
+        }
+        
+        .skills-container {
+            gap: 15px;
+        }
+        
+        .skill-card {
+            width: 100%;
+            padding: 20px;
+            min-height: 300px;
+        }
+        
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .skill-title {
+            font-size: 20px;
+        }
+        
+        .nav-button {
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+    }
+</style>
+
+</head>
+<body data-theme="dark">
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                
+                    PORTO<span>FOLIO</span>
+                </div>
+                <button class="toggle-theme" id="themeToggle">Mode Terang</button>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title">Keahlian</h2>
+            
+            <div class="skills-container">
+                <div class="skill-card node">
+                    <div class="skill-icon">
+                        <img src="https://cdn.iconscout.com/icon/free/png-256/free-node-js-1174925.png" alt="Node.js" width="60" height="60">
+                    </div>
+                    <div class="skill-title">Node.js</div>
+                    <div class="skill-level">
+                        <div class="level-fill"></div>
+                    </div>
+                    <div class="skill-progress">40%</div>
+                    <button class="skill-button" data-skill="node">Lihat Detail</button>
+                    <div class="skill-description" id="node-description">
+                        <p>sebuah platform untuk menjalankan kode JavaScript di luar browser, biasanya di komputer atau server kalau biasanya JavaScript hanya dipakai di dalam website (misalnya untuk tombol atau animasi), Node.js membuat JavaScript bisa dipakai untuk bikin aplikasi lengkap, seperti server, chatbot, atau aplikasi backend.</p>
+                    </div>
+                </div>
+                
+                <div class="skill-card python">
+                    <div class="skill-icon">
+                        <img src="https://cdn.iconscout.com/icon/free/png-256/free-python-3521655-2945099.png" alt="Python" width="60" height="60">
+                    </div>
+                    <div class="skill-title">Python</div>
+                    <div class="skill-level">
+                        <div class="level-fill"></div>
+                    </div>
+                    <div class="skill-progress">55%</div>
+                    <button class="skill-button" data-skill="python">Lihat Detail</button>
+                    <div class="skill-description" id="python-description">
+                        <p>Python adalah bahasa pemrograman yang sangat mudah dipahami, bahkan oleh pemula. Ibaratnya seperti bahasa sehari-hari, tapi untuk memberi instruksi ke komputer. Python bisa digunakan untuk membuat aplikasi, game, robot, website
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="skill-card js">
+                    <div class="skill-icon">
+                        <img src="https://cdn.iconscout.com/icon/free/png-256/free-javascript-3629449-3031512.png" alt="JavaScript" width="60" height="60">
+                    </div>
+                    <div class="skill-title">JavaScript</div>
+                    <div class="skill-level">
+                        <div class="level-fill"></div>
+                    </div>
+                    <div class="skill-progress">60%</div>
+                    <button class="skill-button" data-skill="js">Lihat Detail</button>
+                    <div class="skill-description" id="js-description">
+                        <p>JavaScript adalah bahasa pemrograman yang digunakan terutama untuk membuat website jadi hidup dan interaktif. Misalnya, saat kamu klik tombol di website dan muncul animasi, popup, atau efek suara—itu kerja JavaScript!
+                 Kalau HTML itu tulangnya (struktur), CSS itu bajunya (desain), JavaScript itu otaknya (aksi/interaksi).</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-button" id="backBtn">
+                    <span>&lt;==</span> Kembali
+                </button>
+                <button class="nav-button" id="nextBtn">
+                    Lanjutkan <span>==&gt;</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+<script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const navButtons = document.querySelectorAll('.nav-button');
+
+    function updateButtonsColor() {
+        if (body.getAttribute('data-theme') === 'dark') {
+            navButtons.forEach(button => {
+                button.style.backgroundColor = 'var(--cyan-color)';
+                button.style.color = '#121212';
+            });
+        } else {
+            navButtons.forEach(button => {
+                button.style.backgroundColor = 'var(--yellow-color)';
+                button.style.color = '#000000';
+            });
+        }
+    }
+
+    updateButtonsColor();
+
+    themeToggle.addEventListener('click', () => {
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.setAttribute('data-theme', 'light');
+            themeToggle.textContent = 'Mode Gelap';
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            themeToggle.textContent = 'Mode Terang';
+        }
+        updateButtonsColor();
+    });
+
+    // Skill description toggle with animation
+    const skillButtons = document.querySelectorAll('.skill-button');
+    const skillCards = document.querySelectorAll('.skill-card');
+
+    skillButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const skill = button.getAttribute('data-skill');
+            const description = document.getElementById(`${skill}-description`);
+            const card = button.closest('.skill-card');
+            
+            if (description.classList.contains('active')) {
+                description.classList.remove('active');
+                button.textContent = 'Lihat Detail';
+                
+                // Add closing animation
+                button.style.animation = 'pulse 0.5s ease';
+                setTimeout(() => {
+                    button.style.animation = '';
+                }, 500);
+                
+            } else {
+                // Close all other descriptions first with animation
+                document.querySelectorAll('.skill-description').forEach(desc => {
+                    if (desc.classList.contains('active')) {
+                        desc.classList.remove('active');
+                    }
+                });
+                
+                document.querySelectorAll('.skill-button').forEach(btn => {
+                    btn.textContent = 'Lihat Detail';
+                    btn.style.animation = '';
+                });
+                
+                // Highlight the active card
+                skillCards.forEach(c => {
+                    c.style.transform = '';
+                    c.style.boxShadow = '';
+                });
+                
+                card.style.transform = 'translateY(-15px) scale(1.03)';
+                card.style.boxShadow = '0 15px 30px var(--card-shadow)';
+                
+                // Show description with animation
+                description.classList.add('active');
+                button.textContent = 'Tutup Detail';
+                
+                // Add opening animation
+                button.style.animation = 'pulse 0.5s ease';
+                setTimeout(() => {
+                    button.style.animation = '';
+                }, 500);
+            }
+        });
+    });
+
+    // Navigation
+    const backBtn = document.getElementById('backBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    backBtn.addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
+
+    nextBtn.addEventListener('click', () => {
+        window.location.href = 'kontak.html';
+    });
+
+    // Add particles background
+    function createParticles() {
+        const particlesContainer = document.createElement('div');
+        particlesContainer.style.position = 'fixed';
+        particlesContainer.style.top = '0';
+        particlesContainer.style.left = '0';
+        particlesContainer.style.width = '100%';
+        particlesContainer.style.height = '100%';
+        particlesContainer.style.overflow = 'hidden';
+        particlesContainer.style.zIndex = '-1';
+        particlesContainer.style.pointerEvents = 'none';
+        document.body.appendChild(particlesContainer);
+        
+        const particleCount = 15;
+        
+        for (let i = 0; i < particleCount; i++) {
+            createParticle(particlesContainer);
+        }
+    }
+    
+    function createParticle(container) {
+        const particle = document.createElement('div');
+        
+        // Set base styles
+        particle.style.position = 'absolute';
+        particle.style.borderRadius = '50%';
+        particle.style.opacity = '0';
+        
+        // Randomize properties
+        const size = Math.random() * 20 + 5;
+        const posX = Math.random() * window.innerWidth;
+        const posY = Math.random() * window.innerHeight;
+        const duration = Math.random() * 15 + 10;
+        const delay = Math.random() * 5;
+        
+        // Set theme-dependent color
+        if (document.body.getAttribute('data-theme') === 'dark') {
+            particle.style.backgroundColor = 'var(--cyan-color)';
+        } else {
+            particle.style.backgroundColor = 'var(--yellow-color)';
+        }
+        
+        // Apply styles
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}px`;
+        particle.style.top = `${posY}px`;
+        particle.style.animation = `fadeInOut ${duration}s ease-in-out ${delay}s infinite`;
+        
+        // Add keyframes for fadeInOut if not already defined
+        if (!document.querySelector('style#particleAnimation')) {
+            const style = document.createElement('style');
+            style.id = 'particleAnimation';
+            style.textContent = `
+                @keyframes fadeInOut {
+                    0%, 100% { opacity: 0; transform: translate(0, 0); }
+                    50% { opacity: 0.3; transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        container.appendChild(particle);
+    }
+
+    // Animate skill levels on page load with staggered animation
+    window.addEventListener('load', () => {
+        createParticles();
+        
+        // Animate skill bars with shimmer effect
+        const animateSkillBar = (selector, width, delay) => {
+            setTimeout(() => {
+                const fill = document.querySelector(selector);
+                fill.style.width = width;
+                
+                // Ensure shimmer animation is applied
+                fill.style.animation = 'shimmer 2s infinite linear';
+            }, delay);
+        };
+        
+        animateSkillBar('.node .level-fill', '40%', 1500);
+        animateSkillBar('.python .level-fill', '55%', 1800);
+        animateSkillBar('.js .level-fill', '60%', 2100);
+    });
+</script>
+
+</body>
+</html>

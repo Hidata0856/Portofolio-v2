@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Portofolio Taufik</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --accent-color: #ffdb58;
+            --button-color: #ffdb58;
+            --button-text: #000000;
+            --cyan-color: #00FFFF;
+            --yellow-color: #FFFF00;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --accent-color: #00FFFF;
+            --button-color: #00FFFF;
+            --button-text: #121212;
+            --cyan-color: #00FFFF;
+            --yellow-color: #FFFF00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 100;
+            background-color: var(--bg-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .toggle-theme {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        h1 {
+            
+            font-size: 3rem;
+            margin-bottom: 20px;;
+        }
+
+        .typing-text {
+            height: 70px;
+            overflow: hidden;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .continue-button {
+            margin-top: 30px;
+            background-color: var(--button-color);
+            color: var(--button-text);
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .continue-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+
+        /* About Section */
+        .about {
+            height: 100vh;
+            padding: 100px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .name-container {
+            text-align: center;
+            position: relative;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .name-text {
+            font-size: 3.5rem;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 2px;
+        }
+        
+        .description {
+            max-width: 800px;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .next-button {
+            margin-top: 20px;
+            padding: 10px 30px;
+            font-size: 18px;
+            border-radius: 30px;
+        }
+        
+        .cyan-text {
+            color: var(--cyan-color);
+        }
+
+        .yellow-text {
+            color: var(--yellow-color);
+        }
+        
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .name-text {
+                font-size: 2.5rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+                padding: 10px 15px;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .continue-button, .next-button {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .typing-text {
+                font-size: 1.5rem;
+                height: 50px;
+            }
+            
+            .name-text {
+                font-size: 2rem;
+            }
+            
+            .description {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+            
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .continue-button, .next-button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo"><span>Portofolio</span></div>
+                <button class="toggle-theme" id="themeToggle">Mode Terang</button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="hero">
+        <div class="container">
+            <h1>Welcome To My Website</h1>
+            <div class="typing-text" id="typingText"></div>
+            <button class="continue-button" id="continueBtn">Lanjutkan</button>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="profile-container">
+                <img src="https://files.catbox.moe/uotxm4.jpg" alt="Foto Taufik" class="profile-image">
+            </div>
+            <div class="name-container">
+                <div class="name-text" id="nameText"></div>
+            </div>
+            <div class="description">
+                <p>perkenalkan nama saya adalah Taufik Hidayat siswa SMK PGRI 1 kota kediri
+                 saat ini saya sedang mendalami beberapa bahasa pemrograman</p>
+            </div>
+            <button class="continue-button next-button" id="nextBtn">Lanjutkan ==></button>
+        </div>
+    </section>
+
+    <script>
+    
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const nextBtn = document.getElementById('nextBtn');
+
+        function updateButtonColor() {
+            if (body.getAttribute('data-theme') === 'dark') {
+                nextBtn.style.backgroundColor = 'var(--cyan-color)';
+                nextBtn.style.color = '#121212';
+            } else {
+                nextBtn.style.backgroundColor = 'var(--yellow-color)';
+                nextBtn.style.color = '#000000';
+            }
+        }
+
+        updateButtonColor();
+
+        themeToggle.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeToggle.textContent = 'Mode Gelap';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = 'Mode Terang';
+            }
+            updateButtonColor();
+        });
+
+        const typingText = document.getElementById('typingText');
+        const phrases = [
+            "Web Developer",
+            "Desain Web",
+            "Desain Foto"
+        ];
+        
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+
+        function typeWriterEffect() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50;
+            } else {
+                typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 100;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                typingSpeed = 1000;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typingSpeed = 500;
+            }
+
+            setTimeout(typeWriterEffect, typingSpeed);
+        }
+
+        const nameText = document.getElementById('nameText');
+        const fullName = "Taufik Hidayat";
+        let letterIndex = 0;
+        let isNameDeleting = false;
+        let nameTypingSpeed = 150;
+        let showingName = false;
+        let isTypingComplete = false;
+
+        function nameTypeWriterEffect() {
+            if (!showingName) return;
+
+            if (isNameDeleting) {
+                letterIndex--;
+                nameTypingSpeed = 60;
+                
+                if (letterIndex <= 0) {
+                    isNameDeleting = false;
+                    letterIndex = 0;
+                    nameTypingSpeed = 500;
+                }
+            } else {
+                letterIndex++;
+                nameTypingSpeed = 150;
+                
+                if (letterIndex >= fullName.length) {
+                    if (!isTypingComplete) {
+                        isTypingComplete = true;
+                        nameTypingSpeed = 3000;
+                        setTimeout(() => {
+                            document.querySelector('.description').style.opacity = '1';
+                        }, 500);
+                    } else {
+                        isNameDeleting = true;
+                        nameTypingSpeed = 1500;
+                    }
+                }
+            }
+
+            const currentText = fullName.substring(0, letterIndex);
+            const taufikPart = currentText.includes(" ") ? 
+                currentText.substring(0, currentText.indexOf(" ")) : 
+                currentText;
+            const hidayatPart = currentText.includes(" ") ? 
+                currentText.substring(currentText.indexOf(" ")) : 
+                "";
+            
+            nameText.innerHTML = `<span class="cyan-text">${taufikPart}</span><span class="yellow-text">${hidayatPart}</span>`;
+
+            setTimeout(nameTypeWriterEffect, nameTypingSpeed);
+        }
+
+        window.addEventListener('load', () => {
+            typeWriterEffect();
+        });
+
+        window.addEventListener('wheel', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+        
+        window.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+
+        const continueBtn = document.getElementById('continueBtn');
+        const aboutSection = document.getElementById('about');
+        const heroSection = document.getElementById('hero');
+
+        continueBtn.addEventListener('click', () => {
+            heroSection.style.display = 'none';
+            aboutSection.style.display = 'flex';
+            showingName = true;
+            nameTypeWriterEffect();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            window.location.href = 'skill.html';
+        });
+
+        aboutSection.style.display = 'none';
+    </script>
+</body>
+</html>

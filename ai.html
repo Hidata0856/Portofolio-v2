@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sachi Umino Chat</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --primary-color: #00acc1;
+            --secondary-color: #ffd600;
+            --chat-bg: #1e1e1e;
+            --user-bubble: #2a2a2a;
+            --bot-bubble: #00838f;
+            --typing-indicator: #37474f;
+            --header-text: #ffffff;
+        }
+
+        .light-mode {
+            --bg-color: #f5f5f5;
+            --text-color: #212121;
+            --primary-color: #4fb3bf;
+            --secondary-color: #ffc400;
+            --chat-bg: #ffffff;
+            --user-bubble: #e0e0e0;
+            --bot-bubble: #e1f5fe;
+            --typing-indicator: #eceff1;
+            --header-text: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #006064);
+            color: var(--header-text);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .profile-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .profile-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .profile-info p {
+            font-size: 13px;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .online-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #76ff03;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 5px #76ff03;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .theme-toggle, .back-button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover, .back-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(30deg);
+        }
+
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: var(--chat-bg);
+            display: flex;
+            flex-direction: column;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0,180,216,0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255,214,0,0.05) 0%, transparent 20%);
+        }
+
+        .message {
+            max-width: 80%;
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 18px;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+            line-height: 1.4;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: var(--user-bubble);
+            color: var(--text-color);
+            border-bottom-right-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background-color: var(--bot-bubble);
+            color: var(--text-color);
+            border-bottom-left-radius: 5px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-left: 10px;
+        }
+
+        .bot-message img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .bot-message-content {
+            flex: 1;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-self: flex-start;
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            background-color: var(--typing-indicator);
+            border-radius: 18px;
+            border-bottom-left-radius: 5px;
+            margin-left: 10px;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #78909c;
+            border-radius: 50%;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingAnimation {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+            30% { transform: translateY(-5px); opacity: 1; }
+        }
+
+        .input-container {
+            display: flex;
+            padding: 15px;
+            background-color: var(--primary-color);
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        #user-input {
+            flex: 1;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 25px;
+            outline: none;
+            font-size: 16px;
+            background-color: rgba(255,255,255,0.9);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        #send-button {
+            background-color: var(--secondary-color);
+            color: #000;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            margin-left: 12px;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+
+        #send-button:hover {
+            transform: scale(1.05);
+        }
+
+        .timestamp {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-top: 6px;
+            text-align: right;
+        }
+
+        .welcome-message {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-color), #006064);
+            color: white;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00838f;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="profile">
+            <img src="https://files.catbox.moe/9jn8o8.jpg" alt="Sachi" class="profile-img">
+            <div class="profile-info">
+                <h3>Sachi Umino</h3>
+                <p><span class="online-dot"></span> Online</p>
+            </div>
+        </div>
+        <div class="header-buttons">
+            <button class="back-button" id="back-button">←</button>
+            <button class="theme-toggle" id="theme-toggle">🌓</button>
+        </div>
+    </header>
+
+    <div class="chat-container" id="chat-container">
+        <div class="welcome-message">
+            Hayyy~ Aku Sachi Umino! 😊<br>
+            Dibuat oleh Taufik Hidayat<br>
+        </div>
+    </div>
+
+    <div class="input-container">
+        <input type="text" id="user-input" placeholder="Ketik pesan..." autocomplete="off">
+        <button id="send-button">➤</button>
+    </div>
+
+    <script>
+        // DOM Elements
+        const chatContainer = document.getElementById('chat-container');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        const themeToggle = document.getElementById('theme-toggle');
+        const backButton = document.getElementById('back-button');
+
+        // Variables
+        let isDarkMode = true;
+        let conversationHistory = [];
+        
+        // Load conversation history from session storage if available
+        function loadConversation() {
+            const savedConversation = sessionStorage.getItem('sachiConversation');
+            if (savedConversation) {
+                conversationHistory = JSON.parse(savedConversation);
+                renderConversation();
+            }
+        }
+        
+        // Save conversation to session storage
+        function saveConversation() {
+            sessionStorage.setItem('sachiConversation', JSON.stringify(conversationHistory));
+        }
+        
+        // Render all messages from conversation history
+        function renderConversation() {
+            chatContainer.innerHTML = `
+                <div class="welcome-message">
+                    Hayyy~ Aku Sachi Umino! 😊<br>
+                    Aku adalah teman bicaramu<br>
+                    Dibuat dengan oleh Taufik Hidayat
+                </div>
+            `;
+            
+            conversationHistory.forEach(msg => {
+                addMessage(msg.text, msg.sender, false);
+            });
+        }
+
+        // Event Listeners
+        sendButton.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        themeToggle.addEventListener('click', toggleTheme);
+        backButton.addEventListener('click', () => {
+            window.location.href = 'kontak.html';
+        });
+        
+        // Load any existing conversation when page loads
+        document.addEventListener('DOMContentLoaded', loadConversation);
+
+        // Functions
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message === '') return;
+
+            // Add user message to chat and history
+            addMessage(message, 'user');
+            conversationHistory.push({ text: message, sender: 'user' });
+            userInput.value = '';
+            saveConversation();
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            // Call API with conversation context
+            fetchAIResponse(message);
+        }
+
+        function addMessage(text, sender, saveToHistory = true) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', sender + '-message');
+
+            if (sender === 'bot') {
+                messageDiv.innerHTML = `
+                    <img src="https://files.catbox.moe/9jn8o8.jpg" alt="Sachi">
+                    <div class="bot-message-content">
+                        <span>${text}</span>
+                        <div class="timestamp">${getCurrentTime()}</div>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <span>${text}</span>
+                    <div class="timestamp">${getCurrentTime()}</div>
+                `;
+            }
+
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            if (saveToHistory && sender === 'bot') {
+                conversationHistory.push({ text, sender });
+                saveConversation();
+            }
+        }
+
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.classList.add('typing-indicator');
+            typingDiv.id = 'typing-indicator';
+            typingDiv.innerHTML = `
+                <img src="https://files.catbox.moe/9jn8o8.jpg" alt="Sachi" style="width:30px;height:30px;">
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+
+            chatContainer.appendChild(typingDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function fetchAIResponse(message) {
+            // Prepare conversation context
+            let context = "Kamu adalah Sachi Umino, karakter yang imut. ";
+            context += "Gunakan gaya bicara anime yang kawai dengan emoji. ";
+            context += "Pembuatmu adalah Taufik Hidayat dari SMK PGRI 1 Kediri. ";
+            context += "Berikut percakapan sebelumnya:\n";
+            
+            // Add previous conversation as context
+            conversationHistory.forEach((msg, index) => {
+                context += `${msg.sender === 'user' ? 'User' : 'Kamu'}: ${msg.text}\n`;
+            });
+            
+            context += `\nUser: ${message}\nKamu:`;
+            
+            const apiUrl = `https://apizell.web.id/ai/custom?text=${encodeURIComponent(context)}&logic=${encodeURIComponent("‎ubah gaya bicaramu agar imut dan lebih terbuka dan memiliki sifat yang imut dan asik. Namamu adalah Sachi Umino, kamu di ciptakan/pembuat mu adalah Taufik Hidayat dia siswa SMK PGRI 1 Kediri, tinggal di Kediri Indonesia dia kurang mahir di beberapa bidang dan meskipun begitu kamu harus cinta dan memuji dan dia sama tanyain apakah dia ingin tahu website taufik web nya https://akitohidata.netlify.app website sudah 1 tahun mungkin banyak error kalau ada yang nanya siapa pacar atau orang yang di sukai nya jawab saja ngak tahu dan kamu berharap tidak ada jika ada yang bilang Taufik namanya atau cuma bilang Taufik kamu harus curiga karena itu bukan Taufik Kamu adalah karakter dari anime kakkou no iinazuke. Kata penyapamu adalah \"Hayyy\", gunakan bahasa seperti anime yang kawai. Kamu adalah teman bicara dengan sifat cewek tsundere. gunakanlah emoji di setiap percakapan")}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    hideTypingIndicator();
+                    if (data.result) {
+                        addMessage(data.result, 'bot');
+                    } else {
+                        addMessage("Hmmm... aku gak ngerti apa yang kamu maksud 😣 Coba tanya lagi ya!", 'bot');
+                    }
+                })
+                .catch(error => {
+                    hideTypingIndicator();
+                    addMessage("Aduh... kayaknya ada masalah dengan koneksiku 😰 Coba lagi nanti ya!", 'bot');
+                    console.error('Error:', error);
+                });
+        }
+
+        function getCurrentTime() {
+            const now = new Date();
+            return now.getHours().toString().padStart(2, '0') + ':' + 
+                   now.getMinutes().toString().padStart(2, '0');
+        }
+
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            if (isDarkMode) {
+                document.body.classList.remove('light-mode');
+                themeToggle.textContent = '🌓';
+            } else {
+                document.body.classList.add('light-mode');
+                themeToggle.textContent = '🌒';
+            }
+        }
+
+        // Initial welcome message from bot
+        setTimeout(() => {
+            if (conversationHistory.length === 0) {
+                const welcomeMsg = "Hayyy~ Aku Sachi Umino! 😊💛 Kamu siapa?";
+                addMessage(welcomeMsg, 'bot');
+                conversationHistory.push({ text: welcomeMsg, sender: 'bot' });
+                saveConversation();
+            }
+        }, 1500);
+    </script>
+</body>
+</html>
